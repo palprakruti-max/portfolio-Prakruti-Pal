@@ -1,10 +1,9 @@
-<!-- structure -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prakruti Pal | Portfolio</title>
+    <t<!-- navbar and skills  -->itle>Prakruti Pal | Portfolio</title>
     
     <style>
         /* Base Reset & Fonts */
@@ -32,9 +31,52 @@
             padding: 0 20px;
         }
 
+        /* Navbar Styling */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #2563eb;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
         /* Hero / About Section */
         .hero-section {
-            padding: 100px 0 60px 0;
+            padding: 80px 0 60px 0;
             display: flex;
             justify-content: center;
             text-align: center;
@@ -89,7 +131,7 @@
         .section-title {
             font-size: 24px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             display: inline-block;
             border-bottom: 3px solid #2563eb;
             padding-bottom: 5px;
@@ -119,7 +161,47 @@
             font-size: 14px;
         }
 
-        /* Placeholder Styling for Empty Sections */
+        /* Skills Grid & Cards */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 4px solid #2563eb;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .skill-icon {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .skill-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .skill-card p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Placeholder Styling */
         .placeholder-text {
             color: #94a3b8;
             font-style: italic;
@@ -177,9 +259,28 @@
                 font-size: 18px;
             }
         }
+        
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none; /* Mobile me thoda clean rakhne ke liye links hide kiye hain, real project me yaha hamburger menu aata hai */
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Prakruti.</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero / About Section -->
     <section id="about" class="hero-section">
@@ -204,15 +305,38 @@
         </div>
     </section>
 
-    <!-- Skills Section (Empty for Commit 1) -->
+    <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <p class="placeholder-text">[Skills content pending for next commit...]</p>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                
+                <!-- Skill 1: C/C++ -->
+                <div class="skill-card">
+                    <div class="skill-icon">{' '}</div>
+                    <h3>C / C++</h3>
+                    <p>Familiar with fundamental programming concepts. Comfortable writing basic programs, understanding object-oriented principles, and working with core logic building.</p>
+                </div>
+
+                <!-- Skill 2: DSA -->
+                <div class="skill-card">
+                    <div class="skill-icon">{'</>'}</div>
+                    <h3>Data Structures & Algorithms</h3>
+                    <p>Actively learning and practicing basic data structures like arrays and linked lists. Building a foundation in problem-solving and algorithmic thinking.</p>
+                </div>
+
+                <!-- Skill 3: Python -->
+                <div class="skill-card">
+                    <div class="skill-icon">Py</div>
+                    <h3>Python</h3>
+                    <p>Exploring the syntax and basics of Python programming. Currently learning how to write simple scripts as a stepping stone towards AI and Machine Learning applications.</p>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Projects Section (Empty for Commit 1) -->
+    <!-- Projects Section (Empty for now) -->
     <section id="projects" class="section bg-white">
         <div class="container">
             <h2 class="section-title">Projects</h2>
@@ -220,7 +344,7 @@
         </div>
     </section>
 
-    <!-- Achievements Section (Empty for Commit 1) -->
+    <!-- Achievements Section (Empty for now) -->
     <section id="achievements" class="section">
         <div class="container">
             <h2 class="section-title">Achievements & Certificates</h2>
