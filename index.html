@@ -1,9 +1,10 @@
+<!-- images  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <t<!-- navbar and skills  -->itle>Prakruti Pal | Portfolio</title>
+    <title>Prakruti Pal | Portfolio</title>
     
     <style>
         /* Base Reset & Fonts */
@@ -65,7 +66,7 @@
         .nav-links a {
             text-decoration: none;
             color: #475569;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
             transition: color 0.2s;
         }
@@ -84,6 +85,25 @@
 
         .hero-content {
             max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Profile Photo Styling */
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 5px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
         }
 
         .hero-content h1 {
@@ -161,7 +181,7 @@
             font-size: 14px;
         }
 
-        /* Skills Grid & Cards */
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -199,6 +219,60 @@
             font-size: 14px;
             color: #64748b;
             line-height: 1.5;
+        }
+
+        /* Certificates Grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .cert-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .cert-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 3px solid #2563eb;
+        }
+
+        .cert-info {
+            padding: 20px;
+        }
+
+        .cert-info h3 {
+            font-size: 16px;
+            color: #0f172a;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .cert-issuer {
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .cert-info p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.4;
         }
 
         /* Placeholder Styling */
@@ -252,6 +326,10 @@
 
         /* Mobile Responsive Media Queries */
         @media (min-width: 768px) {
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
             .hero-content h1 {
                 font-size: 48px;
             }
@@ -261,8 +339,22 @@
         }
         
         @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 10px;
+            }
             .nav-links {
-                display: none; /* Mobile me thoda clean rakhne ke liye links hide kiye hain, real project me yaha hamburger menu aata hai */
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .nav-links a {
+                font-size: 14px;
+                background-color: #f1f5f9;
+                padding: 5px 12px;
+                border-radius: 20px;
             }
         }
     </style>
@@ -276,6 +368,7 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
+                <a href="#achievements">Achievements</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -286,6 +379,7 @@
     <section id="about" class="hero-section">
         <div class="container">
             <div class="hero-content">
+                <img src="image.png" alt="Prakruti Pal" class="profile-img">
                 <h1>Hi, I'm <span>Prakruti Pal</span></h1>
                 <p>I am a second-year Artificial Intelligence and Machine Learning (AI/ML) student at the Acropolis Institute of Technology and Science. I am passionate about exploring the frontiers of artificial intelligence, leveraging data to solve complex problems, and building innovative technological solutions. Always eager to learn, I am constantly expanding my skill set to adapt to the fast-paced tech landscape.</p>
                 <a href="#contact" class="btn">Get In Touch</a>
@@ -310,45 +404,80 @@
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
-                
-                <!-- Skill 1: C/C++ -->
                 <div class="skill-card">
                     <div class="skill-icon">{' '}</div>
                     <h3>C / C++</h3>
                     <p>Familiar with fundamental programming concepts. Comfortable writing basic programs, understanding object-oriented principles, and working with core logic building.</p>
                 </div>
-
-                <!-- Skill 2: DSA -->
                 <div class="skill-card">
                     <div class="skill-icon">{'</>'}</div>
                     <h3>Data Structures & Algorithms</h3>
                     <p>Actively learning and practicing basic data structures like arrays and linked lists. Building a foundation in problem-solving and algorithmic thinking.</p>
                 </div>
-
-                <!-- Skill 3: Python -->
                 <div class="skill-card">
                     <div class="skill-icon">Py</div>
                     <h3>Python</h3>
                     <p>Exploring the syntax and basics of Python programming. Currently learning how to write simple scripts as a stepping stone towards AI and Machine Learning applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Achievements & Certificates</h2>
+            <div class="cert-grid">
+                
+                <!-- Certificate 1: GDGoC -->
+                <div class="cert-card">
+                    <img src="image_5.png" alt="GDGoC Certificate" class="cert-img">
+                    <div class="cert-info">
+                        <h3>DSA Coding Contest (Battle of Brains)</h3>
+                        <span class="cert-issuer">GDGoC On Campus, AITR</span>
+                        <p>Awarded Certificate of Appreciation for outstanding performance and participation in the Data Structures & Algorithms coding contest (April 2026).</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 2: Infosys Python -->
+                <div class="cert-card">
+                    <img src="image_4.png" alt="Infosys Python Certificate" class="cert-img">
+                    <div class="cert-info">
+                        <h3>Python Foundation Certification</h3>
+                        <span class="cert-issuer">Infosys Springboard</span>
+                        <p>Successfully completed the comprehensive Python Foundation Certification program (January 2026).</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 3: UI DSA -->
+                <div class="cert-card">
+                    <img src="image_2.png" alt="DSA Certificate" class="cert-img">
+                    <div class="cert-info">
+                        <h3>Data Structures & Algorithms</h3>
+                        <span class="cert-issuer">Universal Informatics</span>
+                        <p>Completed intensive training program focusing on problem-solving using DSA concepts (Jan - Mar 2026).</p>
+                    </div>
+                </div>
+
+                <!-- Certificate 4: UI C & C++ -->
+                <div class="cert-card">
+                    <img src="image_3.png" alt="C & C++ Certificate" class="cert-img">
+                    <div class="cert-info">
+                        <h3>C & C++ OOPS</h3>
+                        <span class="cert-issuer">Universal Informatics</span>
+                        <p>Successfully completed training program covering core C concepts and C++ Object-Oriented Programming (Aug - Oct 2025).</p>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Projects Section (Empty for now) -->
-    <section id="projects" class="section bg-white">
+    <!-- Projects Section (Pending) -->
+    <section id="projects" class="section">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <p class="placeholder-text">[Projects content pending for next commit...]</p>
-        </div>
-    </section>
-
-    <!-- Achievements Section (Empty for now) -->
-    <section id="achievements" class="section">
-        <div class="container">
-            <h2 class="section-title">Achievements & Certificates</h2>
-            <p class="placeholder-text">[Achievements content pending for next commit...]</p>
+            <p class="placeholder-text">[Projects section pending... Let me know if you have projects to add!]</p>
         </div>
     </section>
 
