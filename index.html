@@ -6,7 +6,7 @@
     <title>Prakruti Pal | Portfolio</title>
     
     <style>
-        /* CSS Variables for Dark Modern Theme (From Reference) */
+        /* CSS Variables for Dark Modern Theme */
         :root {
             --bg-main: #181522; 
             --bg-card: rgba(255, 255, 255, 0.03); 
@@ -28,6 +28,7 @@
         html {
             scroll-behavior: smooth;
             overflow-x: hidden; 
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -45,14 +46,14 @@
             padding: 0 20px;
         }
 
-        /* Navbar Styling - Floating Pill */
+        /* Navbar Styling */
         .nav-wrapper {
             position: sticky;
             top: 20px;
             z-index: 100;
             display: flex;
             justify-content: center;
-            padding: 0 20px;
+            width: 100%;
         }
 
         .navbar {
@@ -63,8 +64,13 @@
             border-radius: 50px;
             padding: 12px 35px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            display: flex;
-            gap: 25px;
+            
+            display: inline-flex;
+            width: fit-content;
+            justify-content: center;
+            align-items: center;
+            gap: 30px; 
+            margin: 0 auto;
         }
 
         .navbar a {
@@ -86,28 +92,31 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Centered Moving Background Icon Animation for Skills */
         @keyframes moveBgIcon {
             0% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); }
-            50% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+            50% { transform: translate(-50%, -50%) scale(1.15) rotate(5deg); }
             100% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); }
         }
 
-        /* Scroll Reveal */
+        /* Scroll Reveal - Added subtle scale for more alive feel */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* Hero / About Section */
+        /* Hero / Landing Section */
         .hero-section {
-            padding: 120px 0 80px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 0 50px 0;
+            margin-top: -70px;
         }
 
         .hero-layout {
@@ -115,6 +124,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 50px;
+            width: 100%;
         }
 
         .hero-text {
@@ -123,7 +133,7 @@
         }
 
         .hero-text h1 {
-            font-size: 52px;
+            font-size: 56px;
             font-weight: 800;
             margin-bottom: 15px;
             color: var(--text-light);
@@ -132,18 +142,10 @@
         }
 
         .hero-text .subtitle {
-            font-size: 20px;
+            font-size: 22px;
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin-bottom: 40px;
             font-weight: 500;
-        }
-
-        .hero-text p {
-            font-size: 15.5px;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-            line-height: 1.7;
-            max-width: 90%;
         }
 
         .btn-group {
@@ -152,7 +154,6 @@
             flex-wrap: wrap;
         }
 
-        /* Primary Button */
         .btn-primary {
             display: inline-block;
             background: var(--primary-gradient);
@@ -171,7 +172,6 @@
             box-shadow: 0 0 25px rgba(244, 162, 182, 0.5);
         }
 
-        /* Secondary Button */
         .btn-outline {
             display: inline-block;
             background: transparent;
@@ -190,7 +190,6 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Profile Photo - Soft Glow */
         .hero-image-wrapper {
             flex-shrink: 0;
             animation: float 5s ease-in-out infinite;
@@ -210,24 +209,53 @@
             padding: 70px 0;
         }
 
+        /* Override standard reveal just for the titles so letters handle the animation */
+        h2.section-title.reveal {
+            transform: none !important; 
+            opacity: 1 !important; 
+        }
+
+        /* HEADINGS CENTERED & ANIMATED */
         .section-title {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            display: inline-block;
+            font-size: 30px;
+            font-weight: 800;
+            margin: 0 auto 40px auto; /* Centers the block */
+            display: table; /* Makes the underline fit exactly under the text */
             color: var(--text-light);
             position: relative;
+            text-align: center;
+        }
+
+        /* Individual Letters */
+        .section-title span {
+            display: inline-block;
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1s ease-out;
+        }
+
+        /* Pull Letters into position when active */
+        .section-title.active span {
+            opacity: 1;
+            transform: translate(0, 0) rotate(0deg) !important;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -8px;
-            left: 0;
-            width: 50%;
+            left: 50%;
+            transform: translateX(-50%); /* Centers the glowing line perfectly */
+            width: 60%;
             height: 3px;
             background: var(--primary-gradient);
             border-radius: 5px;
+            opacity: 0; /* Starts hidden */
+            transition: opacity 0.6s ease 0.8s; /* Fades in after letters land */
+        }
+
+        /* Show line */
+        .section-title.active::after {
+            opacity: 1;
         }
 
         /* Sub-headings */
@@ -240,9 +268,10 @@
             border-bottom: 1px solid var(--border-subtle);
             padding-bottom: 8px;
         }
+        
         .category-wrapper { margin-bottom: 40px; }
 
-        /* General Card Design (Dark Glass) */
+        /* General Card Design */
         .glass-card {
             background-color: var(--bg-card);
             padding: 25px;
@@ -250,20 +279,28 @@
             border: 1px solid var(--border-subtle);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .glass-card:hover {
             transform: translateY(-5px);
             border-color: rgba(244, 162, 182, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        /* Text Achievements List (Wide Cards) */
+        /* About Section Paragraph */
+        .about-text {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            text-align: center; /* Centered about text for better look */
+        }
+
+        /* Text Achievements List */
         .achievement-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 30px;
         }
 
         .achievement-item {
@@ -336,7 +373,7 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.03; 
+            opacity: 0.12; 
             z-index: -1;
             pointer-events: none;
             animation: moveBgIcon 8s infinite alternate ease-in-out;
@@ -344,7 +381,7 @@
         }
 
         .skill-cpp::after { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg'); }
-        .skill-dsa::after { background-image: url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/diagram-3-fill.svg'); }
+        .skill-dsa::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23f3b5c7'%3E%3Cpath d='M208 0c-29.9 0-54.7 20.5-61.8 48.2-.8 0-1.4-.2-2.2-.2-35.3 0-64 28.7-64 64 0 4.8.6 9.5 1.7 14C52.5 138 32 166.6 32 200c0 12.6 3.2 24.3 8.3 34.9C16.3 248.7 0 274.3 0 304c0 33.3 20.4 61.9 49.4 73.9-.9 4.6-1.4 9.3-1.4 14.1 0 39.8 32.2 72 72 72 4.1 0 8.1-.5 12-1.2 9.6 28.5 36.2 49.2 68 49.2 39.8 0 72-32.2 72-72V0h-64zm160 0h-64v512c39.8 0 72-32.2 72-72 31.8 0 58.4-20.7 68-49.2 3.9.7 7.9 1.2 12 1.2 39.8 0 72-32.2 72-72 0-4.8-.5-9.5-1.4-14.1 29-12 49.4-40.6 49.4-73.9 0-29.7-16.3-55.3-40.3-69.1 5.2-10.6 8.3-22.3 8.3-34.9 0-33.4-20.5-62-49.7-74 1.1-4.5 1.7-9.2 1.7-14 0-35.3-28.7-64-64-64-.8 0-1.5.2-2.2.2C362.7 20.5 337.9 0 308 0z'/%3E%3C/svg%3E"); }
         .skill-py::after { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'); }
 
         .skill-icon {
@@ -381,7 +418,6 @@
             border-color: rgba(244, 162, 182, 0.3);
         }
 
-        /* CERTIFICATE IMAGE FIX: Pura dikhega, original proportions me */
         .cert-img {
             width: 100%;
             height: auto;
@@ -392,7 +428,7 @@
 
         .cert-info, .project-info {
             padding: 22px;
-            flex-grow: 1; /* Keeps content aligned */
+            flex-grow: 1; 
         }
 
         .cert-info h3, .project-title {
@@ -500,6 +536,12 @@
                 border-radius: 20px;
             }
 
+            .hero-section {
+                min-height: auto;
+                padding: 60px 0;
+                margin-top: 0;
+            }
+
             .hero-layout {
                 flex-direction: column-reverse;
                 text-align: center;
@@ -508,7 +550,7 @@
             
             .hero-text { text-align: center; }
             .hero-text h1 { font-size: 40px; }
-            .hero-text p { margin: 0 auto 30px auto; }
+            .hero-text .subtitle { margin-bottom: 30px; }
             
             .btn-group { justify-content: center; }
             .profile-img {
@@ -520,26 +562,22 @@
 </head>
 <body>
 
-    <!-- Floating Navbar -->
     <div class="nav-wrapper">
         <nav class="navbar">
             <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#achievements">Achievements</a>
             <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#contact">Contact</a>
         </nav>
     </div>
 
-    <!-- Hero / About Section -->
-    <section id="about" class="hero-section">
+    <section id="home" class="hero-section">
         <div class="container reveal">
             <div class="hero-layout">
-                <!-- Text on Left -->
                 <div class="hero-text">
                     <h1>Hi, I'm <br>Prakruti Pal</h1>
                     <div class="subtitle">2nd Year AI/ML Engineering Student</div>
-                    <p>I am studying Artificial Intelligence and Machine Learning at the Acropolis Institute of Technology and Science, currently maintaining an SGPA of 7.99. I am passionate about AI, data-driven problem solving, and building innovative tech solutions. I continuously strive to enhance my skills and adapt to the evolving technology landscape.</p>
                     
                     <div class="btn-group">
                         <a href="#projects" class="btn-primary">View My Work</a>
@@ -547,7 +585,6 @@
                     </div>
                 </div>
                 
-                <!-- Square Photo on Right -->
                 <div class="hero-image-wrapper">
                     <img src="image.png" alt="Prakruti Pal" class="profile-img">
                 </div>
@@ -555,7 +592,17 @@
         </div>
     </section>
 
-    <!-- Education Section -->
+    <section id="about" class="section">
+        <div class="container reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card">
+                <p class="about-text">
+                    I am studying Artificial Intelligence and Machine Learning at the Acropolis Institute of Technology and Science, currently maintaining an SGPA of 7.99. I am passionate about AI, data-driven problem solving, and building innovative tech solutions. I continuously strive to enhance my skills and adapt to the evolving technology landscape.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section id="education" class="section">
         <div class="container reveal">
             <h2 class="section-title">Education</h2>
@@ -582,7 +629,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title reveal">Technical Skills</h2>
@@ -606,26 +652,64 @@
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section id="achievements" class="section">
+    <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title reveal">Achievements & Certificates</h2>
+            <h2 class="section-title reveal">Projects</h2>
             
-            <div class="category-wrapper">
-                <h3 class="sub-heading reveal">Highlights</h3>
-                <div class="achievement-list">
-                    <div class="achievement-item glass-card reveal">
-                        <strong>DSA Course Mastery:</strong> Successfully mastered an extensive Data Structures and Algorithms (DSA) course, developing a concrete understanding of algorithmic complexities, graph theory, trees, and dynamic optimization structures.
+            <div class="projects-grid">
+                <div class="project-card glass-card reveal">
+                    <div class="project-info">
+                        <h3 class="project-title">Smart Resume Scanner</h3>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">NLP</span>
+                            <span class="tech-badge">Machine Learning</span>
+                        </div>
+                        <p class="project-desc">An AI-powered Applicant Tracking System (ATS) that evaluates resumes against job descriptions. It uses Natural Language Processing (NLP) to extract keywords, analyze content, and provide a match percentage to help optimize resumes.</p>
+                        <a href="https://github.com/palprakruti-max/Smart_Resume_Scanning" target="_blank" class="project-link">
+                            View on GitHub →
+                        </a>
                     </div>
-                    <div class="achievement-item glass-card reveal">
-                        <strong>Academic Excellence:</strong> Consistently demonstrating strong performance and conceptual clarity in core technical computer science curriculums.
+                </div>
+
+                <!-- NEW LOCAL CART PROJECT INSERTED HERE -->
+                <div class="project-card glass-card reveal">
+                    <div class="project-info">
+                        <h3 class="project-title">Local Cart</h3>
+                        <div class="tech-stack">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Frontend</span>
+                            <span class="tech-badge">UML & SRS</span>
+                        </div>
+                        <p class="project-desc">A web-based platform designed to bring local city businesses online. Developed with a React frontend and an English-only interface, backed by comprehensive Software Requirements Specification (SRS) and UML documentation.</p>
+                        <a href="https://localcart-1.onrender.com/" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
                     </div>
-                    <div class="achievement-item glass-card reveal">
-                        <strong>Hackathon Finalist:</strong> Designed and deployed a working logic engine prototype in a competitive, fast-paced hackathon environment.
+                </div>
+
+                <div class="project-card glass-card reveal">
+                    <div class="project-info">
+                        <h3 class="project-title">AI Virtual Mouse</h3>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">MediaPipe</span>
+                        </div>
+                        <p class="project-desc">A computer vision-based application that allows users to control their system's mouse cursor using hand gestures. Utilizes real-time hand landmark detection to map physical movements to on-screen coordinates.</p>
+                        <a href="https://github.com/palprakruti-max/virtual_mouse" target="_blank" class="project-link">
+                            View on GitHub →
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
+    <section id="certifications" class="section">
+        <div class="container">
+            <h2 class="section-title reveal">Certifications</h2>
+            
             <div class="category-wrapper">
                 <h3 class="sub-heading reveal">Languages</h3>
                 <div class="cert-grid">
@@ -669,80 +753,85 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
+    <section id="achievements" class="section">
         <div class="container">
-            <h2 class="section-title reveal">Projects</h2>
-            
-            <div class="projects-grid">
-                <!-- Smart Resume Scanner -->
-                <div class="project-card glass-card reveal">
-                    <div class="project-info">
-                        <h3 class="project-title">Smart Resume Scanner</h3>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">NLP</span>
-                            <span class="tech-badge">Machine Learning</span>
-                        </div>
-                        <p class="project-desc">An AI-powered Applicant Tracking System (ATS) that evaluates resumes against job descriptions. It uses Natural Language Processing (NLP) to extract keywords, analyze content, and provide a match percentage to help optimize resumes.</p>
-                        <a href="https://github.com/palprakruti-max/Smart_Resume_Scanning" target="_blank" class="project-link">
-                            View on GitHub →
-                        </a>
-                    </div>
+            <h2 class="section-title reveal">Key Achievements</h2>
+            <div class="achievement-list">
+                <div class="achievement-item glass-card reveal">
+                    <strong>DSA Course Mastery:</strong> Successfully mastered an extensive Data Structures and Algorithms (DSA) course, developing a concrete understanding of algorithmic complexities, graph theory, trees, and dynamic optimization structures.
                 </div>
-
-                <!-- Virtual Mouse -->
-                <div class="project-card glass-card reveal">
-                    <div class="project-info">
-                        <h3 class="project-title">AI Virtual Mouse</h3>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">OpenCV</span>
-                            <span class="tech-badge">MediaPipe</span>
-                        </div>
-                        <p class="project-desc">A computer vision-based application that allows users to control their system's mouse cursor using hand gestures. Utilizes real-time hand landmark detection to map physical movements to on-screen coordinates.</p>
-                        <a href="https://github.com/palprakruti-max/virtual_mouse" target="_blank" class="project-link">
-                            View on GitHub →
-                        </a>
-                    </div>
+                <div class="achievement-item glass-card reveal">
+                    <strong>Academic Excellence:</strong> Consistently demonstrating strong performance and conceptual clarity in core technical computer science curriculums.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact-section reveal">
         <div class="container">
-            <h2>Let's Connect</h2>
+            <h2 class="section-title reveal">Let's Connect</h2>
             <p>I am currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
             <a href="mailto:palprakruti@gmail.com" class="btn-primary">Email Me: palprakruti@gmail.com</a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Prakruti Pal. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Scroll Animations -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            
+            // --- 1. SETUP LETTER SCATTER FOR HEADINGS ---
+            const sectionTitles = document.querySelectorAll('.section-title');
+            
+            sectionTitles.forEach(title => {
+                const text = title.textContent.trim();
+                title.innerHTML = ''; 
+                
+                title.classList.add('reveal');
+                
+                [...text].forEach(char => {
+                    const span = document.createElement('span');
+                    
+                    if (char === ' ') {
+                        span.innerHTML = '&nbsp;';
+                    } else {
+                        span.innerText = char;
+                    }
+                    
+                    const startX = (Math.random() - 0.5) * 800 + 'px'; 
+                    const startY = (Math.random() - 0.5) * 800 + 'px'; 
+                    
+                    const startRot = (Math.random() - 0.5) * 180 + 'deg'; 
+                    
+                    span.style.transform = `translate(${startX}, ${startY}) rotate(${startRot})`;
+                    
+                    title.appendChild(span);
+                });
+            });
+
+            // --- 2. EXISTING SCROLL REVEAL LOGIC ---
             function reveal() {
                 var reveals = document.querySelectorAll(".reveal");
+                var windowHeight = window.innerHeight;
+                
                 for (var i = 0; i < reveals.length; i++) {
-                    var windowHeight = window.innerHeight;
                     var elementTop = reveals[i].getBoundingClientRect().top;
-                    var elementVisible = 50; 
+                    var elementBottom = reveals[i].getBoundingClientRect().bottom;
+                    var elementVisible = 30; 
                     
-                    if (elementTop < windowHeight - elementVisible) {
+                    if (elementTop < windowHeight - elementVisible && elementBottom > 0) {
                         reveals[i].classList.add("active");
+                    } else {
+                        reveals[i].classList.remove("active");
                     }
                 }
             }
+            
             window.addEventListener("scroll", reveal);
             setTimeout(reveal, 100); 
         });
