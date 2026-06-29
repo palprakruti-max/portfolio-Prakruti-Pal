@@ -1,0 +1,246 @@
+<!-- structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakruti Pal | Portfolio</title>
+    
+    <style>
+        /* Base Reset & Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero / About Section */
+        .hero-section {
+            padding: 100px 0 60px 0;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        .hero-content h1 span {
+            color: #2563eb;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Common Section Styling */
+        .section {
+            padding: 50px 0;
+        }
+
+        .bg-white {
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 5px;
+        }
+
+        /* Education Card */
+        .card {
+            background-color: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .card .college {
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card .year {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Placeholder Styling for Empty Sections */
+        .placeholder-text {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #0f172a;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .contact-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+        }
+
+        .email-btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .email-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            color: #64748b;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive Media Queries */
+        @media (min-width: 768px) {
+            .hero-content h1 {
+                font-size: 48px;
+            }
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero / About Section -->
+    <section id="about" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Prakruti Pal</span></h1>
+                <p>I am a second-year Artificial Intelligence and Machine Learning (AI/ML) student at the Acropolis Institute of Technology and Science. I am passionate about exploring the frontiers of artificial intelligence, leveraging data to solve complex problems, and building innovative technological solutions. Always eager to learn, I am constantly expanding my skill set to adapt to the fast-paced tech landscape.</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="card">
+                <h3>B.Tech in Artificial Intelligence & Machine Learning</h3>
+                <div class="college">Acropolis Institute of Technology and Science</div>
+                <div class="year">2nd Year Student (Ongoing)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Empty for Commit 1) -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <p class="placeholder-text">[Skills content pending for next commit...]</p>
+        </div>
+    </section>
+
+    <!-- Projects Section (Empty for Commit 1) -->
+    <section id="projects" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <p class="placeholder-text">[Projects content pending for next commit...]</p>
+        </div>
+    </section>
+
+    <!-- Achievements Section (Empty for Commit 1) -->
+    <section id="achievements" class="section">
+        <div class="container">
+            <h2 class="section-title">Achievements & Certificates</h2>
+            <p class="placeholder-text">[Achievements content pending for next commit...]</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>I am currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            <a href="mailto:palprakruti@gmail.com" class="email-btn">Email Me: palprakruti@gmail.com</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Prakruti Pal. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
