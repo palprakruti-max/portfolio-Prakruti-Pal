@@ -6,15 +6,15 @@
     <title>Prakruti Pal | Portfolio</title>
     
     <style>
-        /* CSS Variables for Baby Pink & Peach Theme */
+        /* CSS Variables for Dark Modern Theme (From Reference) */
         :root {
-            --primary: #ff7b93; 
-            --primary-hover: #ff5c77;
-            --peach: #ffdab9; 
-            --bg-light: #fff0f5; 
-            --text-dark: #2d3748;
-            --text-muted: #718096;
-            --card-bg: rgba(255, 255, 255, 0.85);
+            --bg-main: #181522; 
+            --bg-card: rgba(255, 255, 255, 0.03); 
+            --primary: #f3b5c7; 
+            --primary-gradient: linear-gradient(90deg, #fbcfe8, #f4a2b6);
+            --text-light: #ffffff;
+            --text-muted: #a6a4b1;
+            --border-subtle: rgba(255, 255, 255, 0.08);
         }
 
         /* Base Reset & Fonts */
@@ -27,76 +27,73 @@
 
         html {
             scroll-behavior: smooth;
-            overflow-x: hidden; /* iOS safety */
+            overflow-x: hidden; 
         }
 
         body {
-            /* Baby Pink to Peach Gradient Background */
-            background: linear-gradient(135deg, #fff0f5 0%, #ffefdb 100%);
-            color: var(--text-dark);
+            background-color: var(--bg-main);
+            background-image: radial-gradient(circle at top right, rgba(244, 162, 182, 0.05), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(200, 150, 255, 0.05), transparent 40%);
+            color: var(--text-light);
             line-height: 1.6;
         }
 
         /* Container */
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Navbar Styling (Glassmorphism effect) */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.8);
-            -webkit-backdrop-filter: blur(10px); /* iPhone Safari fix */
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(255, 123, 147, 0.1);
+        /* Navbar Styling - Floating Pill */
+        .nav-wrapper {
             position: sticky;
-            top: 0;
+            top: 20px;
             z-index: 100;
-        }
-
-        .nav-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+            justify-content: center;
+            padding: 0 20px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
+        .navbar {
+            background-color: rgba(30, 27, 46, 0.6);
+            -webkit-backdrop-filter: blur(15px); 
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50px;
+            padding: 12px 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
-        .nav-links a {
+        .navbar a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 15px;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 14px;
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
+        .navbar a:hover {
             color: var(--primary);
         }
 
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Scroll Reveal Classes (Desktop Only) */
+        /* Centered Moving Background Icon Animation for Skills */
+        @keyframes moveBgIcon {
+            0% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); }
+            50% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+            100% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); }
+        }
+
+        /* Scroll Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -110,206 +107,304 @@
 
         /* Hero / About Section */
         .hero-section {
-            padding: 80px 0 60px 0;
-            display: flex;
-            justify-content: center;
-            text-align: center;
+            padding: 120px 0 80px 0;
         }
 
-        .hero-content {
-            max-width: 800px;
+        .hero-layout {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: space-between;
+            gap: 50px;
         }
 
-        /* Profile Photo Styling with Float Animation */
-        .profile-img {
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 25px;
-            border: 6px solid #ffffff;
-            box-shadow: 0 15px 35px rgba(255, 123, 147, 0.25);
-            animation: float 4s ease-in-out infinite;
+        .hero-text {
+            flex: 1;
+            text-align: left;
         }
 
-        .hero-content h1 {
-            font-size: 38px;
+        .hero-text h1 {
+            font-size: 52px;
             font-weight: 800;
             margin-bottom: 15px;
-            color: var(--text-dark);
+            color: var(--text-light);
+            line-height: 1.1;
+            letter-spacing: -1px;
         }
 
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-
-        .hero-content p {
-            font-size: 16px;
+        .hero-text .subtitle {
+            font-size: 20px;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            font-weight: 500;
         }
 
-        .btn {
+        .hero-text p {
+            font-size: 15.5px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            line-height: 1.7;
+            max-width: 90%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Primary Button */
+        .btn-primary {
             display: inline-block;
-            background-color: var(--primary);
-            color: #ffffff;
-            padding: 14px 32px;
+            background: var(--primary-gradient);
+            color: #1a1525;
+            padding: 12px 28px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 8px 15px rgba(255, 123, 147, 0.3);
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 0 20px rgba(244, 162, 182, 0.3);
             transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 20px rgba(255, 123, 147, 0.4);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(244, 162, 182, 0.5);
+        }
+
+        /* Secondary Button */
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Profile Photo - Soft Glow */
+        .hero-image-wrapper {
+            flex-shrink: 0;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .profile-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 30px; 
+            object-fit: cover;
+            box-shadow: 0 0 50px rgba(244, 162, 182, 0.15);
+            border: 1px solid var(--border-subtle);
         }
 
         /* Common Section Styling */
         .section {
-            padding: 60px 0;
+            padding: 70px 0;
         }
 
         .section-title {
             font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-weight: 700;
+            margin-bottom: 30px;
             display: inline-block;
-            border-bottom: 3px solid var(--primary);
-            padding-bottom: 8px;
-            color: var(--text-dark);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 5px;
         }
 
         /* Sub-headings */
         .sub-heading {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 600;
             color: var(--primary);
             margin: 20px 0 20px 0;
             display: inline-block;
-            border-bottom: 2px dashed rgba(255, 123, 147, 0.5);
-            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 8px;
         }
+        .category-wrapper { margin-bottom: 40px; }
 
-        .category-wrapper {
-            margin-bottom: 40px;
-        }
-
-        /* Education Card */
-        .card {
-            background-color: var(--card-bg);
+        /* General Card Design (Dark Glass) */
+        .glass-card {
+            background-color: var(--bg-card);
             padding: 25px;
-            border-radius: 12px;
-            border-left: 6px solid var(--primary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .card h3 {
-            font-size: 19px;
-            margin-bottom: 5px;
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(244, 162, 182, 0.3);
         }
 
-        .card .college {
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 5px;
+        /* Text Achievements List (Wide Cards) */
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .card .year {
+        .achievement-item {
+            padding: 20px 25px;
+            border-left: 4px solid var(--primary);
             color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .achievement-item strong {
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        /* Education Grid */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .glass-card h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: var(--text-light);
+        }
+
+        .glass-card .institute {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
             font-size: 14px;
+        }
+
+        .score-badge {
+            display: inline-block;
+            background: rgba(244, 162, 182, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            border: 1px solid rgba(244, 162, 182, 0.2);
         }
 
         /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .skill-card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border-bottom: 4px solid var(--primary);
-            transition: all 0.3s ease;
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden; 
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 123, 147, 0.15);
+        /* Animated Background Icons */
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 140px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.03; 
+            z-index: -1;
+            pointer-events: none;
+            animation: moveBgIcon 8s infinite alternate ease-in-out;
+            transform: translate(-50%, -50%);
         }
+
+        .skill-cpp::after { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg'); }
+        .skill-dsa::after { background-image: url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/diagram-3-fill.svg'); }
+        .skill-py::after { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'); }
 
         .skill-icon {
-            font-size: 26px;
-            font-weight: 800;
+            font-size: 28px;
             color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .skill-card h3 {
-            font-size: 19px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .skill-card p {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--text-muted);
+            margin-top: auto;
         }
 
         /* Certificates & Projects Grid */
         .cert-grid, .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
         .cert-card, .project-card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
+            background-color: var(--bg-card);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 123, 147, 0.1);
+            border: 1px solid var(--border-subtle);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .cert-card:hover, .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 123, 147, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(244, 162, 182, 0.3);
         }
 
+        /* CERTIFICATE IMAGE FIX: Pura dikhega, original proportions me */
         .cert-img {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-            object-position: top;
-            border-bottom: 3px solid var(--primary);
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .cert-info, .project-card {
-            padding: 25px;
+        .cert-info, .project-info {
+            padding: 22px;
+            flex-grow: 1; /* Keeps content aligned */
         }
 
         .cert-info h3, .project-title {
             font-size: 18px;
             margin-bottom: 5px;
-            font-weight: 800;
+            color: var(--text-light);
         }
 
         .cert-issuer {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 13px;
             margin-bottom: 10px;
             display: block;
         }
@@ -321,32 +416,27 @@
 
         /* Project Specific */
         .project-card {
-            border-top: 4px solid var(--primary);
-            display: flex;
-            flex-direction: column;
             height: 100%;
         }
 
         .tech-stack {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
 
         .tech-badge {
-            background-color: var(--bg-light);
+            background-color: rgba(255, 255, 255, 0.05);
             color: var(--primary);
             font-size: 12px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 700;
-            border: 1px solid rgba(255, 123, 147, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(244, 162, 182, 0.2);
         }
 
         .project-desc {
             margin-bottom: 20px;
-            flex-grow: 1;
         }
 
         .project-link {
@@ -354,23 +444,21 @@
             align-items: center;
             gap: 5px;
             color: var(--primary);
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
-            font-size: 15px;
-            transition: color 0.2s;
+            font-size: 14px;
+            transition: opacity 0.2s;
+            margin-top: auto;
         }
 
-        .project-link:hover {
-            color: var(--primary-hover);
-        }
+        .project-link:hover { opacity: 0.8; }
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, #ff7b93 0%, #ffa07a 100%);
-            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border-subtle);
             text-align: center;
-            padding: 70px 20px;
-            border-radius: 20px 20px 0 0;
+            padding: 80px 20px;
             margin-top: 40px;
         }
 
@@ -381,103 +469,88 @@
         }
 
         .contact-section p {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto 30px auto;
             font-size: 16px;
         }
 
-        .email-btn {
-            display: inline-block;
-            background-color: #ffffff;
-            color: var(--primary);
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .email-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
         /* Footer */
         footer {
-            background-color: #2d3748;
-            color: #cbd5e0;
+            background-color: #12101a;
+            color: var(--text-muted);
             text-align: center;
             padding: 25px;
             font-size: 14px;
+            border-top: 1px solid var(--border-subtle);
         }
 
-        /* --- MOBILE & IPHONE RESPONSIVE FIXES --- */
+        /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
             .reveal {
                 opacity: 1 !important;
                 transform: translateY(0) !important;
             }
             
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 10px;
-            }
-            .nav-links {
-                width: 100%;
-                justify-content: center;
+            .navbar {
                 flex-wrap: wrap;
-                gap: 10px;
-            }
-            .nav-links a {
-                font-size: 14px;
-                background-color: var(--card-bg);
-                padding: 6px 14px;
+                justify-content: center;
+                gap: 15px;
+                padding: 15px 20px;
                 border-radius: 20px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             }
-        }
 
-        @media (min-width: 768px) {
+            .hero-layout {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .hero-text { text-align: center; }
+            .hero-text h1 { font-size: 40px; }
+            .hero-text p { margin: 0 auto 30px auto; }
+            
+            .btn-group { justify-content: center; }
             .profile-img {
-                width: 220px;
-                height: 220px;
-            }
-            .hero-content h1 {
-                font-size: 48px;
-            }
-            .hero-content p {
-                font-size: 18px;
+                width: 250px;
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Prakruti.</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Floating Navbar -->
+    <div class="nav-wrapper">
+        <nav class="navbar">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#projects">Projects</a>
+        </nav>
+    </div>
 
     <!-- Hero / About Section -->
     <section id="about" class="hero-section">
         <div class="container reveal">
-            <div class="hero-content">
-                <img src="image.png" alt="Prakruti Pal" class="profile-img">
-                <h1>Hi, I'm <span>Prakruti Pal</span></h1>
-                <p>I am a second-year Artificial Intelligence and Machine Learning (AI/ML) student at the Acropolis Institute of Technology and Science. I am passionate about exploring the frontiers of artificial intelligence, leveraging data to solve complex problems, and building innovative technological solutions. Always eager to learn, I am constantly expanding my skill set to adapt to the fast-paced tech landscape.</p>
-                <a href="#contact" class="btn">Get In Touch</a>
+            <div class="hero-layout">
+                <!-- Text on Left -->
+                <div class="hero-text">
+                    <h1>Hi, I'm <br>Prakruti Pal</h1>
+                    <div class="subtitle">2nd Year AI/ML Engineering Student</div>
+                    <p>I am studying Artificial Intelligence and Machine Learning at the Acropolis Institute of Technology and Science, currently maintaining an SGPA of 7.99. I am passionate about AI, data-driven problem solving, and building innovative tech solutions. I continuously strive to enhance my skills and adapt to the evolving technology landscape.</p>
+                    
+                    <div class="btn-group">
+                        <a href="#projects" class="btn-primary">View My Work</a>
+                        <a href="#contact" class="btn-outline">Contact Me</a>
+                    </div>
+                </div>
+                
+                <!-- Square Photo on Right -->
+                <div class="hero-image-wrapper">
+                    <img src="image.png" alt="Prakruti Pal" class="profile-img">
+                </div>
             </div>
         </div>
     </section>
@@ -486,10 +559,25 @@
     <section id="education" class="section">
         <div class="container reveal">
             <h2 class="section-title">Education</h2>
-            <div class="card">
-                <h3>B.Tech in Artificial Intelligence & Machine Learning</h3>
-                <div class="college">Acropolis Institute of Technology and Science</div>
-                <div class="year">2nd Year Student (Ongoing)</div>
+            <div class="education-grid">
+                <div class="glass-card">
+                    <h3>B.Tech in AI & Machine Learning</h3>
+                    <div class="institute">Acropolis Institute of Technology and Science</div>
+                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 10px;">2nd Year Student (Ongoing)</p>
+                    <div class="score-badge">SGPA: 7.99</div>
+                </div>
+                <div class="glass-card">
+                    <h3>Class 12th (Senior Secondary)</h3>
+                    <div class="institute">Indore Glorious School (MP Board)</div>
+                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 10px;">Physics, Chemistry, Mathematics</p>
+                    <div class="score-badge">Percentage: 85%</div>
+                </div>
+                <div class="glass-card">
+                    <h3>Class 10th (Secondary)</h3>
+                    <div class="institute">The South Indian Cultural Association Sr. Sec. School</div>
+                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 10px;">CBSE Board, Indore</p>
+                    <div class="score-badge">Percentage: 92%</div>
+                </div>
             </div>
         </div>
     </section>
@@ -499,17 +587,17 @@
         <div class="container">
             <h2 class="section-title reveal">Technical Skills</h2>
             <div class="skills-grid">
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card skill-cpp reveal">
                     <div class="skill-icon">{' '}</div>
                     <h3>C / C++</h3>
                     <p>Familiar with fundamental programming concepts. Comfortable writing basic programs, understanding object-oriented principles, and working with core logic building.</p>
                 </div>
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card skill-dsa reveal">
                     <div class="skill-icon">{'</>'}</div>
                     <h3>Data Structures & Algorithms</h3>
                     <p>Actively learning and practicing basic data structures like arrays and linked lists. Building a foundation in problem-solving and algorithmic thinking.</p>
                 </div>
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card skill-py reveal">
                     <div class="skill-icon">Py</div>
                     <h3>Python</h3>
                     <p>Exploring the syntax and basics of Python programming. Currently learning how to write simple scripts as a stepping stone towards AI and Machine Learning applications.</p>
@@ -523,7 +611,21 @@
         <div class="container">
             <h2 class="section-title reveal">Achievements & Certificates</h2>
             
-            <!-- Category 1: Languages -->
+            <div class="category-wrapper">
+                <h3 class="sub-heading reveal">Highlights</h3>
+                <div class="achievement-list">
+                    <div class="achievement-item glass-card reveal">
+                        <strong>DSA Course Mastery:</strong> Successfully mastered an extensive Data Structures and Algorithms (DSA) course, developing a concrete understanding of algorithmic complexities, graph theory, trees, and dynamic optimization structures.
+                    </div>
+                    <div class="achievement-item glass-card reveal">
+                        <strong>Academic Excellence:</strong> Consistently demonstrating strong performance and conceptual clarity in core technical computer science curriculums.
+                    </div>
+                    <div class="achievement-item glass-card reveal">
+                        <strong>Hackathon Finalist:</strong> Designed and deployed a working logic engine prototype in a competitive, fast-paced hackathon environment.
+                    </div>
+                </div>
+            </div>
+
             <div class="category-wrapper">
                 <h3 class="sub-heading reveal">Languages</h3>
                 <div class="cert-grid">
@@ -546,7 +648,6 @@
                 </div>
             </div>
 
-            <!-- Category 2: Problem Solving -->
             <div class="category-wrapper">
                 <h3 class="sub-heading reveal">Problem Solving</h3>
                 <div class="cert-grid">
@@ -578,41 +679,37 @@
             <h2 class="section-title reveal">Projects</h2>
             
             <div class="projects-grid">
-                
-                <!-- Smart Resume Scanner Project -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">Smart Resume Scanner</h3>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">NLP</span>
-                        <span class="tech-badge">Machine Learning</span>
+                <!-- Smart Resume Scanner -->
+                <div class="project-card glass-card reveal">
+                    <div class="project-info">
+                        <h3 class="project-title">Smart Resume Scanner</h3>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">NLP</span>
+                            <span class="tech-badge">Machine Learning</span>
+                        </div>
+                        <p class="project-desc">An AI-powered Applicant Tracking System (ATS) that evaluates resumes against job descriptions. It uses Natural Language Processing (NLP) to extract keywords, analyze content, and provide a match percentage to help optimize resumes.</p>
+                        <a href="https://github.com/palprakruti-max/Smart_Resume_Scanning" target="_blank" class="project-link">
+                            View on GitHub →
+                        </a>
                     </div>
-                    
-                    <p class="project-desc">An AI-powered Applicant Tracking System (ATS) that evaluates resumes against job descriptions. It uses Natural Language Processing (NLP) to extract keywords, analyze content, and provide a match percentage to help optimize resumes.</p>
-                    
-                    <a href="https://github.com/palprakruti-max/Smart_Resume_Scanning" target="_blank" class="project-link">
-                        View on GitHub →
-                    </a>
                 </div>
 
-                <!-- Virtual Mouse Project -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">AI Virtual Mouse</h3>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">OpenCV</span>
-                        <span class="tech-badge">MediaPipe</span>
+                <!-- Virtual Mouse -->
+                <div class="project-card glass-card reveal">
+                    <div class="project-info">
+                        <h3 class="project-title">AI Virtual Mouse</h3>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">MediaPipe</span>
+                        </div>
+                        <p class="project-desc">A computer vision-based application that allows users to control their system's mouse cursor using hand gestures. Utilizes real-time hand landmark detection to map physical movements to on-screen coordinates.</p>
+                        <a href="https://github.com/palprakruti-max/virtual_mouse" target="_blank" class="project-link">
+                            View on GitHub →
+                        </a>
                     </div>
-                    
-                    <p class="project-desc">A computer vision-based application that allows users to control their system's mouse cursor using hand gestures. Utilizes real-time hand landmark detection to map physical movements to on-screen coordinates.</p>
-                    
-                    <a href="https://github.com/palprakruti-max/virtual_mouse" target="_blank" class="project-link">
-                        View on GitHub →
-                    </a>
                 </div>
-
             </div>
         </div>
     </section>
@@ -622,7 +719,7 @@
         <div class="container">
             <h2>Let's Connect</h2>
             <p>I am currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
-            <a href="mailto:palprakruti@gmail.com" class="email-btn">Email Me: palprakruti@gmail.com</a>
+            <a href="mailto:palprakruti@gmail.com" class="btn-primary">Email Me: palprakruti@gmail.com</a>
         </div>
     </section>
 
